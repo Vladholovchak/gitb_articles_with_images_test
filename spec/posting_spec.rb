@@ -3,7 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Posting, type: :model do
+  # I don't see negative tests, where we do not find image
   describe '.article_with_image' do
+    # better use fixture or factory(factory bot)
+    # and use let
     posting_body =  "<p>Hi dear community members,</p>\r\n<p><strong>Spotlight #3</strong>"\
                     "is our latest bi-weekly community digest for you. It covers Cybersecurity, "\
                     "IT and DevOps topics<strong>. </strong>Check it out, join discussions and share "\
@@ -15,6 +18,7 @@ RSpec.describe Posting, type: :model do
                     "ions/looking-for-an-identity-and-access-management-product-for-an-energy-and-utility-organ"\
                     "ization\">Looking for an Identity and Access Management product for an energy and utility organization</a></li>"
 
+    # use let there too
     response = {
       'alt' => 'Spotlight #3 - a community digest',
       'src' => 'https://images.peerspot.com/image/upload/c_limit,f_auto,q_auto,w_550/bvvrzbv97pp5srg612le16pv99rg.jpg',
@@ -23,6 +27,7 @@ RSpec.describe Posting, type: :model do
 
     let(:posting) { insert :posting, body: posting_body, type: 'Article' }
 
+    #  this test give us anything
     it 'should be an Article model' do
       expect(posting.type).to eq('Article')
       expect(posting.body).to eq(posting_body)
